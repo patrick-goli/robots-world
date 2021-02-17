@@ -79,11 +79,14 @@ public class Monde extends JPanel {
             for (int vert = 0; vert <nbC; vert++) {
                 try {
                     if(containDirtyPaper(x/sizeX, y/sizeY)) {
-                        g.setColor(new Color(200,0,0));
+                        g.setColor(new Color(0,0,0));
                     }else {
-                        g.setColor(new Color(0,0,200));
+                        g.setColor(new Color(144, 238, 144));
                     }
+
                     g.fillOval(x, y, sizeX, sizeY);
+                    //g.setColor(new Color(0, 0, 200));
+                    //g.fillRoundRect(x,y,sizeX,sizeY,2,2);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
