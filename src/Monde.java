@@ -4,7 +4,7 @@ import java.awt.*;
 public class Monde extends JPanel {
     public int nbL;
     public int nbC;
-    public boolean[][] mat;
+    private final boolean[][] mat;
     private static final boolean DIRTY = true;
     private static final boolean CLEAN = false;
 

@@ -1,7 +1,7 @@
 public abstract class Robot {
-    public int posY;
-    public int posX;
-    public Monde monde;
+    protected int posY;
+    protected int posX;
+    protected final Monde monde;
 
     public Robot(Monde m, int x, int y) throws Exception {
         monde=m;
