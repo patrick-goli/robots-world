@@ -9,42 +9,42 @@ public class Monde extends JPanel {
     private static final boolean CLEAN = false;
 
     public Monde() {
-        this.nbC =10;
-        this.nbL = 10;
-        this.mat = new boolean[nbL][nbC];
+        nbC =10;
+        nbL = 10;
+        mat = new boolean[nbL][nbC];
     }
 
     public Monde(int lignes, int colonnes) {
-        this.nbC = colonnes;
-        this.nbL = lignes;
-        this.mat = new boolean[nbL][nbC];
+        nbC = colonnes;
+        nbL = lignes;
+        mat = new boolean[nbL][nbC];
     }
 
     public void putDirtyPaper(int i, int j) throws Exception {
-        if (i < 0 || j < 0 || j > this.nbL || j > this.nbC) {
+        if (i < 0 || j < 0 || j > nbL || j > nbC) {
             throw new Exception("Case pas dans monde");
         }
-        this.mat[i][j] = DIRTY;
+        mat[i][j] = DIRTY;
     }
 
     public void cleanDirtyPaper(int i, int j) throws Exception {
-        if (i < 0 || j < 0 || j > this.nbL || j > this.nbC) {
+        if (i < 0 || j < 0 || j > nbL || j > nbC) {
             throw new Exception("Case pas dans monde");
         }
-        this.mat[i][j] = CLEAN;
+        mat[i][j] = CLEAN;
     }
 
     public boolean containDirtyPaper(int i, int j) throws Exception {
-        if (i < 0 || j < 0 || j > this.nbL || j > this.nbC) {
+        if (i < 0 || j < 0 || j > nbL || j > nbC) {
             throw new Exception("Case pas dans monde");
         }
-        return this.mat[i][j] == DIRTY;
+        return mat[i][j] == DIRTY;
     }
 
     public int countDirtyPapers() {
         int sum = 0;
-        for (int i = 0; i < this.nbL; i++) {
-            for (boolean j : this.mat[i]) {
+        for (int i = 0; i < nbL; i++) {
+            for (boolean j : mat[i]) {
                 sum += (j == DIRTY ? 1 : 0);
             }
         }
@@ -52,7 +52,7 @@ public class Monde extends JPanel {
     }
 
     public void printMatrix() {
-        JFrame frame = new JFrame("Testing");
+        JFrame frame = new JFrame("Monde");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(this);
         frame.pack();
@@ -64,24 +64,32 @@ public class Monde extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(400, 400);
+        return new Dimension(50*nbC,50*nbL);
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-        int size = Math.min(getWidth() - 4, getHeight() - 4) / 10;
-        int width = getWidth() - (size * 2);
-        int height = getHeight() - (size * 2);
+        int sizeY = getHeight()/nbL;
+        int sizeX = getWidth()/nbC;
 
-        int y = (getHeight() - (size * 10)) / 2;
-        for (int horz = 0; horz < 10; horz++) {
-            int x = (getWidth() - (size * 10)) / 2;
-            for (int vert = 0; vert < 10; vert++) {
-                g.drawRect(x, y, size, size);
-                x += size;
+        int y = 0;
+        for (int horz = 0; horz <nbL; horz++) {
+            int x = 0;
+            for (int vert = 0; vert <nbC; vert++) {
+                try {
+                    if(containDirtyPaper(x/sizeX, y/sizeY)) {
+                        g.setColor(new Color(200,0,0));
+                    }else {
+                        g.setColor(new Color(0,0,200));
+                    }
+                    g.fillOval(x, y, sizeX, sizeY);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                x += sizeX;
             }
-            y += size;
+            y += sizeY;
         }
         g2d.dispose();
     }
