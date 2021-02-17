@@ -75,16 +75,15 @@ public class Monde extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-        int sizeY = getWidth()/nbL;
-        int sizeX = getHeight()/nbC;
+        int sizeX = getWidth()/nbC;
+        int sizeY = getHeight()/nbL;
 
-        int y = 0;
-        for (int horz = 0; horz <nbL; horz++) {
-            int x = 0;
-            for (int vert = 0; vert <nbC; vert++) {
+        int x = 0;
+        for (int horz = 0; horz <nbC; horz++) {
+            int y = 0;
+            for (int vert = 0; vert <nbL; vert++) {
                 try {
-                    System.out.println(x/sizeX + "," + y/sizeY);
-                    if(containDirtyPaper(x/sizeX, y/sizeY)) {
+                    if(containDirtyPaper(y/sizeY, x/sizeX)) {
                         g.setColor(new Color(0,0,0));
                     }else {
                         g.setColor(new Color(144, 238, 144));
@@ -98,9 +97,9 @@ public class Monde extends JPanel {
                     e.printStackTrace();
                     System.exit(1);
                 }
-                x += sizeX;
+                y += sizeY;
             }
-            y += sizeY;
+            x += sizeX;
         }
         g2d.dispose();
     }

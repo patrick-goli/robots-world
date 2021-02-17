@@ -13,16 +13,18 @@ public abstract class Robot {
 
     public Robot(Monde m){
         monde=m;
-        posX = (int) ( monde.nbC * Math.random());
-        posY = (int)  ( monde.nbL * Math.random());
+        posX = (int) ( monde.nbL * Math.random());
+        posY = (int)  ( monde.nbC * Math.random());
+        System.out.println(this.toString()+" created at coodinates (" + posX + "," + posY +")");
     }
 
     public void moveToPosition(int x, int y) throws Exception {
         if (!monde.positionIsValid(x,y)) {
-            throw new Exception("Case pas dans monde");
+            throw new Exception("Case (" + x + "," + y +") pas dans monde");
         }
         posX=x;
         posY=y;
+        System.out.println(this.toString()+ " moving to coodinates (" + x + "," + y +")");
     }
 
     public void parcourir() throws Exception {
