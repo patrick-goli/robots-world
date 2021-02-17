@@ -1,3 +1,4 @@
+package project.robots;
 public class RobotPollueurToutDroit extends Robot{
     int colDepart; //TODO remove this ?
 

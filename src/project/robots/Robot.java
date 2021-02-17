@@ -1,3 +1,5 @@
+package project.robots;
+
 public abstract class Robot {
     protected int posY;
     protected int posX;

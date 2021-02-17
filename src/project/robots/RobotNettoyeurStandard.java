@@ -1,7 +1,8 @@
-public class RobotNettoyeur extends Robot{
+package project.robots;
+public class RobotNettoyeurStandard extends RobotNettoyeur{
 
-    public RobotNettoyeur(Monde m) throws Exception {
-        super(m, 0, 0);
+    public RobotNettoyeurStandard(Monde m) {
+        super(m);
     }
 
     public void nettoyer() throws Exception {

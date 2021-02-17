@@ -1,3 +1,5 @@
+package project.robots;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -10,10 +12,10 @@ public class Main {
         }
         robotDroit.parcourir();
         monde.printMatrix();
-        Thread.sleep(2000);
-        RobotNettoyeur nettoyeur = new RobotNettoyeur(monde);
-        nettoyeur.nettoyer();
-        monde.printMatrix();
+//        Thread.sleep(2000);
+//        RobotNettoyeur nettoyeur = new RobotNettoyeur(monde);
+//        nettoyeur.nettoyer();
+//        monde.printMatrix();
 
     }
 }
