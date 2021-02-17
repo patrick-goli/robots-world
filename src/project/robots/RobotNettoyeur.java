@@ -10,6 +10,6 @@ public abstract class RobotNettoyeur extends Robot{
     }
 
     public void nettoyer() throws Exception {
-        throw new Exception("Ne sait pas encore nettoyer");
+        throw new Exception("Nien a faire");
     }
 }

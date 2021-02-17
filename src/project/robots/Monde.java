@@ -26,23 +26,23 @@ public class Monde extends JPanel {
         return i >= 0 && i < nbL && j >= 0 && j < nbC  ;
     }
 
-    public void putDirtyPaper(int i, int j) throws Exception {
+    public void putDirtyPaper(int i, int j) throws PositionNonValideException {
         if (!positionIsValid(i,j)) {
-            throw new Exception("Case (" + i + "," + j +") pas dans monde");
+            throw new PositionNonValideException("(" + i + "," + j +")");
         }
         mat[i][j] = DIRTY;
     }
 
-    public void cleanDirtyPaper(int i, int j) throws Exception {
+    public void cleanDirtyPaper(int i, int j) throws PositionNonValideException {
         if (!positionIsValid(i,j)) {
-            throw new Exception("Case (" + i + "," + j +") pas dans monde");
+            throw new PositionNonValideException("(" + i + "," + j +")");
         }
         mat[i][j] = CLEAN;
     }
 
-    public boolean containDirtyPaper(int i, int j) throws Exception {
+    public boolean containDirtyPaper(int i, int j) throws PositionNonValideException {
         if (!positionIsValid(i,j)) {
-            throw new Exception("Case (" + i + "," + j +") pas dans monde");
+            throw new PositionNonValideException("(" + i + "," + j +")");
         }
         return mat[i][j] == DIRTY;
     }
@@ -90,11 +90,11 @@ public class Monde extends JPanel {
                         g.setColor(new Color(144, 238, 144));
                     }
 
-                    g.fillOval(x, y, sizeX, sizeY);
+                    //g.fillOval(x, y, sizeX, sizeY);
                     //TODO set border color
                     //g.setColor(new Color(0, 0, 200));
-                    //g.fillRoundRect(x,y,sizeX,sizeY,2,2);
-                } catch (Exception e) {
+                    g.fillRoundRect(x,y,sizeX,sizeY,20,20);
+                } catch (PositionNonValideException e) {
                     e.printStackTrace();
                     System.exit(1);
                 }

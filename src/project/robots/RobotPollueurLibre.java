@@ -14,7 +14,7 @@ public class RobotPollueurLibre extends Robot {
         return list.get( new Random().nextInt(list.size()));
     }
 
-    public void parcourir() throws Exception {
+    public void parcourir() throws PositionNonValideException {
         LinkedList<Integer> positionsX=new LinkedList<>();
         LinkedList<Integer> positionsY=new LinkedList<>();
         //TODO see if we can move around: up to 8 possible moves

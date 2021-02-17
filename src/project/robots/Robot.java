@@ -5,10 +5,10 @@ public abstract class Robot {
     protected int posX;
     protected final Monde monde;
 
-    public Robot(Monde m, int x, int y) throws Exception {
+    public Robot(Monde m, int x, int y) throws PositionNonValideException {
         monde=m;
         if(!monde.positionIsValid(x,y))
-            throw new Exception("Case pas dans monde");
+            throw new PositionNonValideException("(" + x + "," + y +")");
         posX=x;
         posY=y;
     }
@@ -20,9 +20,9 @@ public abstract class Robot {
         System.out.println(this.toString()+" created at coodinates (" + posX + "," + posY +")");
     }
 
-    public void moveToPosition(int x, int y) throws Exception {
+    public void moveToPosition(int x, int y) throws PositionNonValideException {
         if (!monde.positionIsValid(x,y)) {
-            throw new Exception("Case (" + x + "," + y +") pas dans monde");
+            throw new PositionNonValideException("(" + x + "," + y +")");
         }
         posX=x;
         posY=y;
