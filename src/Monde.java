@@ -9,39 +9,39 @@ public class Monde extends JPanel {
     private static final boolean CLEAN = false;
 
     public Monde() {
-        nbC =10;
         nbL = 10;
+        nbC =10;
         mat = new boolean[nbL][nbC];
     }
 
     public Monde(int lignes, int colonnes) {
-        nbC = colonnes;
         nbL = lignes;
+        nbC = colonnes;
         mat = new boolean[nbL][nbC];
     }
 
 
     public boolean positionIsValid(int i, int j){
-        return i >= 0 && j >= 0 && j < nbL && i < nbC;
+        return i >= 0 && i < nbL && j >= 0 && j < nbC  ;
     }
 
     public void putDirtyPaper(int i, int j) throws Exception {
         if (!positionIsValid(i,j)) {
-            throw new Exception("Case pas dans monde");
+            throw new Exception("Case (" + i + "," + j +") pas dans monde");
         }
         mat[i][j] = DIRTY;
     }
 
     public void cleanDirtyPaper(int i, int j) throws Exception {
         if (!positionIsValid(i,j)) {
-            throw new Exception("Case pas dans monde");
+            throw new Exception("Case (" + i + "," + j +") pas dans monde");
         }
         mat[i][j] = CLEAN;
     }
 
     public boolean containDirtyPaper(int i, int j) throws Exception {
         if (!positionIsValid(i,j)) {
-            throw new Exception("Case pas dans monde");
+            throw new Exception("Case (" + i + "," + j +") pas dans monde");
         }
         return mat[i][j] == DIRTY;
     }
@@ -75,14 +75,15 @@ public class Monde extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-        int sizeY = getHeight()/nbL;
-        int sizeX = getWidth()/nbC;
+        int sizeY = getWidth()/nbL;
+        int sizeX = getHeight()/nbC;
 
         int y = 0;
         for (int horz = 0; horz <nbL; horz++) {
             int x = 0;
             for (int vert = 0; vert <nbC; vert++) {
                 try {
+                    System.out.println(x/sizeX + "," + y/sizeY);
                     if(containDirtyPaper(x/sizeX, y/sizeY)) {
                         g.setColor(new Color(0,0,0));
                     }else {
@@ -95,6 +96,7 @@ public class Monde extends JPanel {
                     //g.fillRoundRect(x,y,sizeX,sizeY,2,2);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    System.exit(1);
                 }
                 x += sizeX;
             }
