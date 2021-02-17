@@ -20,22 +20,27 @@ public class Monde extends JPanel {
         mat = new boolean[nbL][nbC];
     }
 
+
+    public boolean positionIsValid(int i, int j){
+        return i >= 0 && j >= 0 && j < nbL && i < nbC;
+    }
+
     public void putDirtyPaper(int i, int j) throws Exception {
-        if (i < 0 || j < 0 || j > nbL || j > nbC) {
+        if (!positionIsValid(i,j)) {
             throw new Exception("Case pas dans monde");
         }
         mat[i][j] = DIRTY;
     }
 
     public void cleanDirtyPaper(int i, int j) throws Exception {
-        if (i < 0 || j < 0 || j > nbL || j > nbC) {
+        if (!positionIsValid(i,j)) {
             throw new Exception("Case pas dans monde");
         }
         mat[i][j] = CLEAN;
     }
 
     public boolean containDirtyPaper(int i, int j) throws Exception {
-        if (i < 0 || j < 0 || j > nbL || j > nbC) {
+        if (!positionIsValid(i,j)) {
             throw new Exception("Case pas dans monde");
         }
         return mat[i][j] == DIRTY;
@@ -85,6 +90,7 @@ public class Monde extends JPanel {
                     }
 
                     g.fillOval(x, y, sizeX, sizeY);
+                    //TODO set border color
                     //g.setColor(new Color(0, 0, 200));
                     //g.fillRoundRect(x,y,sizeX,sizeY,2,2);
                 } catch (Exception e) {
