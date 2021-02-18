@@ -1,6 +1,7 @@
 package project.robots;
 
 public abstract class Robot {
+    private static final boolean DEBUG = true;
     protected final Monde monde;
     protected int posY;
     protected int posX;
@@ -17,7 +18,8 @@ public abstract class Robot {
         monde = m;
         posX = (int) (monde.nbL * Math.random());
         posY = (int) (monde.nbC * Math.random());
-        System.out.println(this.toString() + " created at coodinates (" + posX + "," + posY + ")");
+        if (DEBUG)
+            System.out.println(this.toString() + " created at coodinates (" + posX + "," + posY + ")");
     }
 
     public void moveToPosition(int x, int y) throws PositionInvalideException {
@@ -26,7 +28,8 @@ public abstract class Robot {
         }
         posX = x;
         posY = y;
-        System.out.println(this.toString() + " moving to coodinates (" + x + "," + y + ")");
+        if (DEBUG)
+            System.out.println(this.toString() + " moving to coodinates (" + x + "," + y + ")");
     }
 
     public void parcourir() throws Exception {

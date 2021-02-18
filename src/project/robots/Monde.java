@@ -58,7 +58,7 @@ public class Monde extends JPanel {
         return sum;
     }
 
-    public void printMatrix() {
+    public void printMonde() {
         JFrame frame = new JFrame("Monde");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(this);
@@ -93,11 +93,15 @@ public class Monde extends JPanel {
 
                     //g.fillOval(x, y, sizeX, sizeY);
                     //TODO set border color
-                    //g.setColor(new Color(0, 0, 200));
                     g.fillRoundRect(x, y, sizeX, sizeY, 20, 20);
+                    g.setColor(new Color(0, 0, 200));
+                    g.drawRoundRect(x, y, sizeX, sizeY, 20, 20);
                 } catch (PositionInvalideException e) {
                     e.printStackTrace();
                     System.exit(1);
+                } catch (ArithmeticException e) {
+                    //e.printStackTrace();
+                    continue;
                 }
                 y += sizeY;
             }

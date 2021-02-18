@@ -8,6 +8,7 @@ public class RobotPollueurToutDroit extends Robot {
         colDepart = colonneDepart;
     }
 
+    @Override
     public void parcourir() throws PositionInvalideException {
         //poluer d'abord la case de depart
         monde.putDirtyPaper(0, colDepart);

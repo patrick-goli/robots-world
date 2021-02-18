@@ -15,6 +15,7 @@ public class RobotPollueurLibre extends Robot {
         return list.get(new Random().nextInt(list.size()));
     }
 
+    @Override
     public void parcourir() throws PositionInvalideException {
         LinkedList<Integer> positionsX = new LinkedList<>();
         LinkedList<Integer> positionsY = new LinkedList<>();
