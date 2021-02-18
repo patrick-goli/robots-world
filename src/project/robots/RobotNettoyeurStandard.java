@@ -10,7 +10,8 @@ public class RobotNettoyeurStandard extends RobotNettoyeur {
     public void nettoyer() throws PositionInvalideException {
         for (int i = 0; i < monde.getNbL(); i++) {
             for (int j = 0; j < monde.getNbC(); j++) {
-                //TODO cannot jump to other side => explore continously: only adjacent positions
+                //TODO ne peut pas sauter de l'autre coté du monde
+                // explorer en continue: seuleument les positions adjacentes
                 moveToPosition(i, j);
                 monde.cleanDirtyPaper(i, j);
             }
