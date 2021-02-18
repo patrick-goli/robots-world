@@ -8,9 +8,9 @@ public class RobotNettoyeurStandard extends RobotNettoyeur {
 
     @Override
     public void nettoyer() throws PositionInvalideException {
-        for (int i = 0; i < monde.nbL; i++) {
-            for (int j = 0; j < monde.nbC; j++) {
-                //TODO cannot jump to other side => explore continously like a robot :)
+        for (int i = 0; i < monde.getNbL(); i++) {
+            for (int j = 0; j < monde.getNbC(); j++) {
+                //TODO cannot jump to other side => explore continously: only adjacent positions
                 moveToPosition(i, j);
                 monde.cleanDirtyPaper(i, j);
             }

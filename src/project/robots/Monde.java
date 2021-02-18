@@ -7,8 +7,8 @@ public class Monde extends JPanel {
     private static final boolean DIRTY = true;
     private static final boolean CLEAN = false;
     private final boolean[][] mat;
-    public int nbL;
-    public int nbC;
+    private final int nbL;
+    private final int nbC;
 
     public Monde() {
         nbL = 10;
@@ -22,32 +22,75 @@ public class Monde extends JPanel {
         mat = new boolean[nbL][nbC];
     }
 
+    public int getNbL() {
+        return nbL;
+    }
 
+    public int getNbC() {
+        return nbC;
+    }
+
+    /**
+     * @param i coordonée x
+     * @param j coordonee y
+     * @return true si la position est validde
+     */
     public boolean positionIsValid(int i, int j) {
         return i >= 0 && i < nbL && j >= 0 && j < nbC;
     }
 
-    public void putDirtyPaper(int i, int j) throws PositionInvalideException {
+    /**
+     * @param i coordonée x
+     * @param j coordonee y
+     * @throws PositionInvalideException si la position est invalide
+     */
+    public void validatePosition(int i, int j) throws PositionInvalideException {
         if (!positionIsValid(i, j)) {
             throw new PositionInvalideException("(" + i + "," + j + ")");
         }
+    }
+
+    /**
+     * Met un papier sale a la position indiquee
+     *
+     * @param i coordonée x
+     * @param j coordonee y
+     * @throws PositionInvalideException si la position est invalide
+     */
+    public void putDirtyPaper(int i, int j) throws PositionInvalideException {
+        validatePosition(i, j);
         mat[i][j] = DIRTY;
     }
 
+    /**
+     * Nettoie un papier sale a la position indiquee
+     *
+     * @param i coordonée x
+     * @param j coordonee y
+     * @throws PositionInvalideException si la position est invalide
+     */
     public void cleanDirtyPaper(int i, int j) throws PositionInvalideException {
-        if (!positionIsValid(i, j)) {
-            throw new PositionInvalideException("(" + i + "," + j + ")");
-        }
+        validatePosition(i, j);
         mat[i][j] = CLEAN;
     }
 
+    /**
+     * Teste si une position contient un paper sale
+     *
+     * @param i coordonée x
+     * @param j coordonee y
+     * @throws PositionInvalideException si la position est invalide
+     */
     public boolean containDirtyPaper(int i, int j) throws PositionInvalideException {
-        if (!positionIsValid(i, j)) {
-            throw new PositionInvalideException("(" + i + "," + j + ")");
-        }
+        validatePosition(i, j);
         return mat[i][j] == DIRTY;
     }
 
+    /**
+     * Compte le nombre de papiers sales dans le monde
+     *
+     * @return Le nombre total
+     */
     public int countDirtyPapers() {
         int sum = 0;
         for (int i = 0; i < nbL; i++) {
@@ -58,8 +101,11 @@ public class Monde extends JPanel {
         return sum;
     }
 
+    /**
+     * Affiche le monde en utilisant la matrice
+     */
     public void printMonde() {
-        JFrame frame = new JFrame("Monde");
+        JFrame frame = new JFrame("Le Monde Des Robots");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(this);
         frame.pack();
@@ -71,9 +117,14 @@ public class Monde extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(50 * nbC, 50 * nbL);
+        return new Dimension(80 * nbC, 80 * nbL);
     }
 
+    /**
+     * Dessine le monde
+     *
+     * @param g objet Graphics
+     */
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();

@@ -4,19 +4,25 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Monde monde = new Monde(5, 10);
-        monde.putDirtyPaper(2, 0);
-        RobotPollueurToutDroit robotDroit = new RobotPollueurToutDroit(monde, 1);
-        RobotPollueurLibre robotLibre = new RobotPollueurLibre(monde);
-        RobotPollueurSauteur sauteur = new RobotPollueurSauteur(monde, 0, 0);
+        monde.putDirtyPaper(1, 0);
+        Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
+        RobotPollueurToutDroit pollueurDroit = new RobotPollueurToutDroit(monde, 1);
+        RobotPollueurLibre pollueurLibre = new RobotPollueurLibre(monde);
+        //RobotPollueurSauteur pollueurSauteur = new RobotPollueurSauteur(monde, 0, 0);
+
+        System.out.println(monde.countDirtyPapers());
         for (int i = 0; i < 5; i++) {
-            robotLibre.parcourir();
+            pollueurLibre.parcourir();
         }
-        robotDroit.parcourir();
-        sauteur.parcourir();
+        System.out.println(monde.countDirtyPapers());
+        pollueurDroit.parcourir();
+        //pollueurSauteur.parcourir();
+
+        System.out.println(monde.countDirtyPapers());
         monde.printMonde();
 //        Thread.sleep(2000);
-//        RobotNettoyeur nettoyeur = new RobotNettoyeur(monde);
-//        nettoyeur.nettoyer();
+//        RobotNettoyeurStandard nettoyeurStandard = new RobotNettoyeurStandard(monde);
+//        nettoyeurStandard.nettoyer();
 //        monde.printMonde();
 
     }
