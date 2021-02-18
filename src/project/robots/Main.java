@@ -2,29 +2,55 @@ package project.robots;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    static void test1() throws PositionInvalideException {
         Monde monde = new Monde(5, 10);
         monde.putDirtyPaper(1, 0);
+        monde.putDirtyPaper(4, 9);
+        System.out.println(monde.countDirtyPapers());
         monde.printMonde();
-        Thread.sleep(2000);
+    }
+
+    static void testPollueurDroit() throws PositionInvalideException {
+        Monde monde = new Monde(5, 10);
         Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
         RobotPollueurToutDroit pollueurDroit = new RobotPollueurToutDroit(monde, 1);
-        RobotPollueurLibre pollueurLibre = new RobotPollueurLibre(monde);
-        //RobotPollueurSauteur pollueurSauteur = new RobotPollueurSauteur(monde, 0, 0);
-
-        System.out.println(monde.countDirtyPapers());
         pollueurDroit.parcourir();
         System.out.println(monde.countDirtyPapers());
 
+        monde.printMonde();
+    }
+
+
+    static void testPollueurLibre() {
+        Monde monde = new Monde(5, 10);
+        Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
+        RobotPollueurLibre pollueurLibre = new RobotPollueurLibre(monde);
         for (int i = 0; i < 5; i++) {
             pollueurLibre.parcourir();
         }
-        //pollueurSauteur.parcourir();
         monde.printMonde();
-//        Thread.sleep(2000);
+    }
+
+    static void testPollueurSauteur() throws Exception {
+        Monde monde = new Monde(5, 10);
+        Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
+        RobotPollueurSauteur pollueurSauteur = new RobotPollueurSauteur(monde, 1, 0, 2);
+        for (int i = 0; i < 5; i++) {
+            pollueurSauteur.parcourir();
+        }
+        monde.printMonde();
+    }
+
+    public static void main(String[] args) throws Exception {
+//        Monde monde = new Monde(5, 10);
+//        Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
 //        RobotNettoyeurStandard nettoyeurStandard = new RobotNettoyeurStandard(monde);
 //        nettoyeurStandard.nettoyer();
 //        monde.printMonde();
 
+        //test1();
+        //testPollueurDroit();
+        //testPollueurLibre();
+        testPollueurSauteur();
     }
 }
