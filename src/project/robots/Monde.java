@@ -10,7 +10,7 @@ public class Monde {
     private final int nbL;
     private final int nbC;
     private final CarteDuMonde carte;
-    private final JFrame grille = new JFrame("Le Monde Des Robots");
+    private final JFrame grille = new JFrame("Le Monde Des Robots \uD83E\uDD16");
 
     public Monde() {
         nbL = 10;

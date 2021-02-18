@@ -1,5 +1,7 @@
 package project.robots;
 
+import java.util.LinkedList;
+
 public abstract class Robot {
     public static boolean DEBUG = false; //Pour afficher ce qui se passe en arrière-plan
     protected final Monde monde;
@@ -49,4 +51,33 @@ public abstract class Robot {
     public void parcourir() throws Exception {
         throw new Exception("Ne sait pas encore se deplacer");
     }
+
+    /**
+     * Calcule les deplacements possibles avec un pas donné
+     *
+     * @param pas par defaut = 1
+     * @return La liste les coordonnées des positions
+     */
+    public LinkedList<Couple> listeDeplacements(int pas) {
+        //assert (pas >0 && pas < Math.max(monde.getNbC(), monde.getNbL()));
+        LinkedList<Couple> positionsValides = new LinkedList<>();
+        //On calcule les positions de mouvement : max 8 cases possibles
+        // une case adjacente a {-1, 0, +1} en plus des coordonnées
+        int[] positions = {-pas, 0, pas};
+
+        for (int i : positions) {
+            for (int j : positions) {
+                if (i == 0 && j == 0) {
+                    //correspond à faire du sur-place
+                    continue;
+                }
+                if (monde.positionIsValid(posX + i, posY + j)) {
+                    //on s'assure de ne pas sortir du cadre
+                    positionsValides.add(new Couple(posX + i, posY + j));
+                }
+            }
+        }
+        return positionsValides;
+    }
+
 }
