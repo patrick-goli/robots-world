@@ -28,7 +28,7 @@ public class RobotPollueurSauteur extends Robot {
             // pollue d'abord notre position initiale
             monde.putDirtyPaper(posX, posY);
             // on choisi une case au hazard et on se déplace
-            LinkedList<Couple> positionsValides = this.listeDeplacements(pasJump);
+            LinkedList<Couple> positionsValides = this.getListeDeplacements(pasJump);
             if (positionsValides.size() == 0) {
                 throw new Exception("Ne peut pas sauter: pas " + pasJump + " trop grand");
             }

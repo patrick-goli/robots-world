@@ -19,7 +19,7 @@ public class RobotPollueurLibre extends Robot {
             // pollue d'abord notre position initiale
             monde.putDirtyPaper(posX, posY);
             // on choisi une case au hazard et on se déplace
-            LinkedList<Couple> positionsValides = this.listeDeplacements(1);
+            LinkedList<Couple> positionsValides = this.getListeDeplacements(1);
             Couple positionFinale = Couple.getRandomElement(positionsValides);
             moveToPosition(positionFinale.getA(), positionFinale.getB());
             monde.putDirtyPaper(positionFinale.getA(), positionFinale.getB());

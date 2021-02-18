@@ -58,7 +58,7 @@ public abstract class Robot {
      * @param pas par defaut = 1
      * @return La liste les coordonnées des positions
      */
-    public LinkedList<Couple> listeDeplacements(int pas) {
+    public LinkedList<Couple> getListeDeplacements(int pas) {
         //assert (pas >0 && pas < Math.max(monde.getNbC(), monde.getNbL()));
         LinkedList<Couple> positionsValides = new LinkedList<>();
         //On calcule les positions de mouvement : max 8 cases possibles
