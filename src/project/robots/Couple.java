@@ -12,7 +12,8 @@ public class Couple {
         b = j;
     }
 
-    /** Randomly select an element based on index
+    /**
+     * Randomly select an element based on index
      *
      * @param list The list to choose from
      * @return A randomly selected element of the list

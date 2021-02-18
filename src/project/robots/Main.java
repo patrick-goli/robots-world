@@ -34,26 +34,32 @@ public class Main {
     static void testPollueurSauteur() throws Exception {
         Monde monde = new Monde(5, 10);
         Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
-        RobotPollueurSauteur pollueurSauteur = new RobotPollueurSauteur(monde, 1, 0, 2);
-        for (int i = 0; i < 5; i++) {
+        RobotPollueurSauteur pollueurSauteur = new RobotPollueurSauteur(monde, 1, 0);
+        for (int i = 0; i < 10; i++) {
             pollueurSauteur.parcourir();
+            monde.printMonde();
+
+            Thread.sleep(1000);
+        }
+    }
+
+    static void testettoyeurLibre() throws PositionInvalideException {
+        Monde monde = new Monde(5, 10);
+        monde.putDirtyPaper(1, 0);
+        Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
+        RobotNettoyeurLibre robotNettoyeurLibre = new RobotNettoyeurLibre(monde, 0, 0);
+        for (int i = 0; i < 3; i++) {
+            robotNettoyeurLibre.nettoyer();
         }
         monde.printMonde();
     }
 
     public static void main(String[] args) throws Exception {
-        Monde monde = new Monde(5, 10);
-        monde.putDirtyPaper(1, 0);
-        Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
-        RobotNettoyeurLibre robotNettoyeurLibre=new RobotNettoyeurLibre(monde,0,0);
-        for (int i = 0; i < 5; i++) {
-            robotNettoyeurLibre.nettoyer();
-        }
-        monde.printMonde();
 
         //test1();
         //testPollueurDroit();
         //testPollueurLibre();
-        //testPollueurSauteur();
+        testPollueurSauteur();
+        //testettoyeurLibre();
     }
 }

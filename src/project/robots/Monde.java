@@ -19,6 +19,7 @@ public class Monde {
         carte = new CarteDuMonde(nbL, nbC);
         grille.setPreferredSize(new Dimension(80 * nbC, 80 * nbL));
         grille.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        grille.pack();
     }
 
     public Monde(int lignes, int colonnes) {
@@ -28,6 +29,7 @@ public class Monde {
         carte = new CarteDuMonde(nbL, nbC);
         grille.setPreferredSize(new Dimension(80 * nbC, 80 * nbL));
         grille.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        grille.pack();
     }
 
     public int getNbL() {
@@ -113,11 +115,10 @@ public class Monde {
      * Affiche le monde en utilisant la matrice
      */
     public void printMonde() {
+        //grille.setVisible(false);
         grille.add(carte);
-        grille.pack();
-        grille.setLocationRelativeTo(null);
+        grille.repaint();
         grille.setVisible(true);
-
     }
 
     private class CarteDuMonde extends JPanel {

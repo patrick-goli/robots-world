@@ -3,21 +3,13 @@ package project.robots;
 import java.util.LinkedList;
 
 public class RobotPollueurSauteur extends Robot {
-    private final int pasJump; //pas du jump: nombre de case
 
-    public RobotPollueurSauteur(Monde m, int x, int y, int pas) throws Exception {
+    public RobotPollueurSauteur(Monde m, int x, int y) throws PositionInvalideException {
         super(m, x, y);
-        // s'assurer qu'on peut effectivement sauter
-        if (pas <= 0 || pas >= Math.max(monde.getNbC(), monde.getNbL()))
-            throw new Exception("Ne peut pas sauter: pas " + pas + " trop grand");
-        pasJump = pas;
     }
 
-    public RobotPollueurSauteur(Monde m, int pas) throws Exception {
+    public RobotPollueurSauteur(Monde m, int pas) {
         super(m);
-        if (pas <= 0 || pas >= Math.max(monde.getNbC(), monde.getNbL()))
-            throw new Exception("Ne peut pas sauter: pas " + pas + " trop grand");
-        pasJump = pas;
     }
 
 
@@ -27,8 +19,10 @@ public class RobotPollueurSauteur extends Robot {
         try {
             // pollue d'abord notre position initiale
             monde.putDirtyPaper(posX, posY);
-            // on choisi une case au hazard et on se déplace
-            LinkedList<Couple> positionsValides = this.getListeDeplacements(pasJump);
+            // on choisi une case au hasard et on se déplace
+            //pas du jump: nombre de case
+            int pasJump = (Math.random() > 0.5) ? 2 : 3;
+            LinkedList<Couple> positionsValides = getListeDeplacements(pasJump);
             if (positionsValides.size() == 0) {
                 throw new Exception("Ne peut pas sauter: pas " + pasJump + " trop grand");
             }
