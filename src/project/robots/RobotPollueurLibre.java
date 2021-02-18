@@ -10,7 +10,7 @@ public class RobotPollueurLibre extends Robot {
 
 
     /**
-     * Se déplace et polue aléatoirement les cases adjacente
+     * Se déplace aléatoirement et polllue les cases adjacente
      */
     @Override
     public void parcourir() {

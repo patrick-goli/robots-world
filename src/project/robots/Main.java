@@ -42,15 +42,18 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-//        Monde monde = new Monde(5, 10);
-//        Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
-//        RobotNettoyeurStandard nettoyeurStandard = new RobotNettoyeurStandard(monde);
-//        nettoyeurStandard.nettoyer();
-//        monde.printMonde();
+        Monde monde = new Monde(5, 10);
+        monde.putDirtyPaper(1, 0);
+        Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
+        RobotNettoyeurLibre robotNettoyeurLibre=new RobotNettoyeurLibre(monde,0,0);
+        for (int i = 0; i < 5; i++) {
+            robotNettoyeurLibre.nettoyer();
+        }
+        monde.printMonde();
 
         //test1();
         //testPollueurDroit();
         //testPollueurLibre();
-        testPollueurSauteur();
+        //testPollueurSauteur();
     }
 }

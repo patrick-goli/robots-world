@@ -12,7 +12,11 @@ public class Couple {
         b = j;
     }
 
-    // Function select an element base on index
+    /** Randomly select an element based on index
+     *
+     * @param list The list to choose from
+     * @return A randomly selected element of the list
+     */
     public static Couple getRandomElement(List<Couple> list) {
         return list.get(new Random().nextInt(list.size()));
     }

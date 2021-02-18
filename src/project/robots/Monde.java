@@ -91,7 +91,7 @@ public class Monde {
      */
     public boolean containDirtyPaper(int i, int j) throws PositionInvalideException {
         validatePosition(i, j);
-        return mat[i][j] == DIRTY;
+        return mat[i][j];
     }
 
     /**
