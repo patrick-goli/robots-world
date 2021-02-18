@@ -1,17 +1,18 @@
 package project.robots;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Monde extends JPanel {
-    public int nbL;
-    public int nbC;
-    private final boolean[][] mat;
     private static final boolean DIRTY = true;
     private static final boolean CLEAN = false;
+    private final boolean[][] mat;
+    public int nbL;
+    public int nbC;
 
     public Monde() {
         nbL = 10;
-        nbC =10;
+        nbC = 10;
         mat = new boolean[nbL][nbC];
     }
 
@@ -22,27 +23,27 @@ public class Monde extends JPanel {
     }
 
 
-    public boolean positionIsValid(int i, int j){
-        return i >= 0 && i < nbL && j >= 0 && j < nbC  ;
+    public boolean positionIsValid(int i, int j) {
+        return i >= 0 && i < nbL && j >= 0 && j < nbC;
     }
 
-    public void putDirtyPaper(int i, int j) throws PositionNonValideException {
-        if (!positionIsValid(i,j)) {
-            throw new PositionNonValideException("(" + i + "," + j +")");
+    public void putDirtyPaper(int i, int j) throws PositionInvalideException {
+        if (!positionIsValid(i, j)) {
+            throw new PositionInvalideException("(" + i + "," + j + ")");
         }
         mat[i][j] = DIRTY;
     }
 
-    public void cleanDirtyPaper(int i, int j) throws PositionNonValideException {
-        if (!positionIsValid(i,j)) {
-            throw new PositionNonValideException("(" + i + "," + j +")");
+    public void cleanDirtyPaper(int i, int j) throws PositionInvalideException {
+        if (!positionIsValid(i, j)) {
+            throw new PositionInvalideException("(" + i + "," + j + ")");
         }
         mat[i][j] = CLEAN;
     }
 
-    public boolean containDirtyPaper(int i, int j) throws PositionNonValideException {
-        if (!positionIsValid(i,j)) {
-            throw new PositionNonValideException("(" + i + "," + j +")");
+    public boolean containDirtyPaper(int i, int j) throws PositionInvalideException {
+        if (!positionIsValid(i, j)) {
+            throw new PositionInvalideException("(" + i + "," + j + ")");
         }
         return mat[i][j] == DIRTY;
     }
@@ -70,31 +71,31 @@ public class Monde extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(50*nbC,50*nbL);
+        return new Dimension(50 * nbC, 50 * nbL);
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-        int sizeX = getWidth()/nbC;
-        int sizeY = getHeight()/nbL;
+        int sizeX = getWidth() / nbC;
+        int sizeY = getHeight() / nbL;
 
         int x = 0;
-        for (int horz = 0; horz <nbC; horz++) {
+        for (int horz = 0; horz < nbC; horz++) {
             int y = 0;
-            for (int vert = 0; vert <nbL; vert++) {
+            for (int vert = 0; vert < nbL; vert++) {
                 try {
-                    if(containDirtyPaper(y/sizeY, x/sizeX)) {
-                        g.setColor(new Color(0,0,0));
-                    }else {
+                    if (containDirtyPaper(y / sizeY, x / sizeX)) {
+                        g.setColor(new Color(0, 0, 0));
+                    } else {
                         g.setColor(new Color(144, 238, 144));
                     }
 
                     //g.fillOval(x, y, sizeX, sizeY);
                     //TODO set border color
                     //g.setColor(new Color(0, 0, 200));
-                    g.fillRoundRect(x,y,sizeX,sizeY,20,20);
-                } catch (PositionNonValideException e) {
+                    g.fillRoundRect(x, y, sizeX, sizeY, 20, 20);
+                } catch (PositionInvalideException e) {
                     e.printStackTrace();
                     System.exit(1);
                 }

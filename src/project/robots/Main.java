@@ -2,7 +2,7 @@ package project.robots;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws PositionInvalideException {
         Monde monde = new Monde(5, 10);
         monde.putDirtyPaper(2, 0);
         RobotPollueurToutDroit robotDroit = new RobotPollueurToutDroit(monde, 1);

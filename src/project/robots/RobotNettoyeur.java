@@ -1,7 +1,8 @@
 package project.robots;
-public abstract class RobotNettoyeur extends Robot{
 
-    public RobotNettoyeur(Monde m, int x, int y) throws Exception {
+public abstract class RobotNettoyeur extends Robot {
+
+    public RobotNettoyeur(Monde m, int x, int y) throws PositionInvalideException {
         super(m, x, y);
     }
 
