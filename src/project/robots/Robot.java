@@ -1,6 +1,8 @@
 package project.robots;
 
+import java.awt.*;
 import java.util.LinkedList;
+import java.util.Random;
 
 public abstract class Robot {
     public static boolean DEBUG = false; //Pour afficher ce qui se passe en arrière-plan
@@ -26,6 +28,16 @@ public abstract class Robot {
         posY = (int) (monde.getNbC() * Math.random());
         if (DEBUG)
             System.out.println(this.toString() + " créé aux coordonnées (" + posX + "," + posY + ")");
+    }
+
+    /**
+     * Randomly select an element based on index
+     *
+     * @param list The list to choose from
+     * @return A randomly selected element of the list
+     */
+    public static Point getRandomElement(LinkedList<Point> list) {
+        return list.get(new Random().nextInt(list.size()));
     }
 
     /**
@@ -58,9 +70,9 @@ public abstract class Robot {
      * @param pas par defaut = 1
      * @return La liste les coordonnées des positions
      */
-    public LinkedList<Couple> getListeDeplacements(int pas) {
+    public LinkedList<Point> getListeDeplacements(int pas) {
         //assert (pas >0 && pas < Math.max(monde.getNbC(), monde.getNbL()));
-        LinkedList<Couple> positionsValides = new LinkedList<>();
+        LinkedList<Point> positionsValides = new LinkedList<>();
         //On calcule les positions de mouvement : max 8 cases possibles
         // une case adjacente a {-1, 0, +1} en plus des coordonnées
         int[] positions = {-pas, 0, pas};
@@ -73,7 +85,7 @@ public abstract class Robot {
                 }
                 if (monde.positionIsValid(posX + i, posY + j)) {
                     //on s'assure de ne pas sortir du cadre
-                    positionsValides.add(new Couple(posX + i, posY + j));
+                    positionsValides.add(new Point(posX + i, posY + j));
                 }
             }
         }

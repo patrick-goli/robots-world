@@ -1,5 +1,6 @@
 package project.robots;
 
+import java.awt.*;
 import java.util.LinkedList;
 
 public class RobotNettoyeurLibre extends RobotNettoyeur {
@@ -26,10 +27,10 @@ public class RobotNettoyeurLibre extends RobotNettoyeur {
             }
             monde.cleanDirtyPaper(x, y);
             // on choisi une case au hazard et on se déplace
-            LinkedList<Couple> positionsValides = this.getListeDeplacements(1);
-            Couple positionFinale = Couple.getRandomElement(positionsValides);
-            x = positionFinale.getA();
-            y = positionFinale.getB();
+            LinkedList<Point> positionsValides = getListeDeplacements(1);
+            Point positionFinale = getRandomElement(positionsValides);
+            x = (int) positionFinale.getX();
+            y = (int) positionFinale.getY();
             moveToPosition(x, y);
             if (monde.containDirtyPaper(x, y)) {
                 if (DEBUG)

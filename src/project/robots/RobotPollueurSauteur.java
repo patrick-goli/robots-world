@@ -1,5 +1,6 @@
 package project.robots;
 
+import java.awt.*;
 import java.util.LinkedList;
 
 public class RobotPollueurSauteur extends Robot {
@@ -22,13 +23,16 @@ public class RobotPollueurSauteur extends Robot {
             // on choisi une case au hasard et on se déplace
             //pas du jump: nombre de case
             int pasJump = (Math.random() > 0.5) ? 2 : 3;
-            LinkedList<Couple> positionsValides = getListeDeplacements(pasJump);
+            LinkedList<Point> positionsValides = getListeDeplacements(pasJump);
             if (positionsValides.size() == 0) {
                 throw new Exception("Ne peut pas sauter: pas " + pasJump + " trop grand");
             }
-            Couple positionFinale = Couple.getRandomElement(positionsValides);
-            moveToPosition(positionFinale.getA(), positionFinale.getB());
-            monde.putDirtyPaper(positionFinale.getA(), positionFinale.getB());
+            Point positionFinale = getRandomElement(positionsValides);
+            int x = (int) positionFinale.getX();
+            int y = (int) positionFinale.getY();
+
+            moveToPosition(x, y);
+            monde.putDirtyPaper(x, y);
         } catch (PositionInvalideException e) {
             // Ceci n'est jamais sensé se produire puisqu'on se déplace dans une position valide
             e.printStackTrace();
