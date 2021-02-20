@@ -150,6 +150,7 @@ public class Monde {
                 for (int vert = 0; vert < nbLignes; vert++) {
                     try {
                         if (containDirtyPaper(y / sizeY, x / sizeX)) {
+                            //couleur noire si papier sale présent
                             g.setColor(new Color(0, 0, 0));
                         } else {
                             g.setColor(new Color(144, 238, 144));
@@ -157,12 +158,15 @@ public class Monde {
 
                         g.fillRoundRect(x, y, sizeX, sizeY, 20, 20);
                         g.setColor(new Color(0, 0, 200));
+                        //les bordures en blue
                         g.drawRoundRect(x, y, sizeX, sizeY, 20, 20);
                     } catch (PositionInvalideException e) {
                         e.printStackTrace();
                         System.exit(1);
                     } catch (ArithmeticException e) {
                         //e.printStackTrace();
+                        //ignore cette erreur qui survient lors de la réduction de la taille de la fenetre du "Monde"
+                        //qui vaut alors 0 ( sizeX=0 ou sizeY=0) division par zéro
                         continue;
                     }
                     y += sizeY;

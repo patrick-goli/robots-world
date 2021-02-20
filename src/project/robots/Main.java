@@ -21,21 +21,22 @@ public class Main {
     }
 
 
-    static void testPollueurLibre() {
+    static void testPollueurLibre() throws InterruptedException {
         Monde monde = new Monde(5, 10);
         Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
         RobotPollueurLibre pollueurLibre = new RobotPollueurLibre(monde);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             pollueurLibre.parcourir();
+            monde.printMonde();
+            Thread.sleep(1000);
         }
-        monde.printMonde();
     }
 
     static void testPollueurSauteur() throws Exception {
-        Monde monde = new Monde(5, 10);
+        Monde monde = new Monde(10, 20);
         Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
         RobotPollueurSauteur pollueurSauteur = new RobotPollueurSauteur(monde, 1, 0);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             pollueurSauteur.parcourir();
             monde.printMonde();
 
@@ -56,10 +57,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        //test1();
+        test1();
         //testPollueurDroit();
         //testPollueurLibre();
-        testPollueurSauteur();
+        //testPollueurSauteur();
         //testettoyeurLibre();
+
     }
 }
