@@ -5,7 +5,7 @@ public class Main {
     static void test1() throws PositionInvalideException {
         Monde monde = new Monde(5, 10);
         monde.putDirtyPaper(1, 0);
-        monde.putDirtyPaper(4, 9);
+        monde.putDirtyPaper(3, 9);
         System.out.println(monde.countDirtyPapers());
         monde.printMonde();
     }
