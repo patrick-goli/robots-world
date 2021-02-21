@@ -1,4 +1,4 @@
-package project.robots;
+package com.project.robots;
 
 import java.awt.*;
 import java.util.LinkedList;

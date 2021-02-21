@@ -1,4 +1,4 @@
-package project.robots;
+package com.project.robots;
 
 public abstract class RobotNettoyeur extends Robot {
 

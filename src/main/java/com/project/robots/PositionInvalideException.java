@@ -1,4 +1,4 @@
-package project.robots;
+package com.project.robots;
 
 public class PositionInvalideException extends Exception {
     public PositionInvalideException(String s) {

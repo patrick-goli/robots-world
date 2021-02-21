@@ -1,4 +1,4 @@
-package project.robots;
+package com.project.robots;
 
 public class RobotPollueurToutDroit extends Robot {
     final int colonneDepart; // égale à posY au final => posY est fixe

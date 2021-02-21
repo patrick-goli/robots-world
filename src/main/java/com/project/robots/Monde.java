@@ -1,4 +1,4 @@
-package project.robots;
+package com.project.robots;
 
 import javax.swing.*;
 import java.awt.*;
