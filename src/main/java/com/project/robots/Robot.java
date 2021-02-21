@@ -36,8 +36,8 @@ public abstract class Robot {
      * @param list The list to choose from
      * @return A randomly selected element of the list
      */
-    public static Point getRandomElement(LinkedList<Point> list) {
-        return list.get(new Random().nextInt(list.size()));
+    public static Point getRandomElement(Point[] list) {
+        return list[new Random().nextInt(list.length)];
     }
 
     /**
@@ -70,7 +70,7 @@ public abstract class Robot {
      * @param pas par defaut = 1
      * @return La liste les coordonnées des positions
      */
-    public LinkedList<Point> getListeDeplacements(int pas) {
+    public Point[] getListeDeplacements(int pas) {
         //assert (pas >0 && pas < Math.max(monde.getNbC(), monde.getNbL()));
         LinkedList<Point> positionsValides = new LinkedList<>();
         //On calcule les positions de mouvement : max 8 cases possibles
@@ -89,7 +89,7 @@ public abstract class Robot {
                 }
             }
         }
-        return positionsValides;
+        return positionsValides.toArray(new Point[0]);
     }
 
 }

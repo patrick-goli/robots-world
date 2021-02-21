@@ -33,10 +33,10 @@ public class Main {
     }
 
     static void testPollueurSauteur() throws Exception {
-        Monde monde = new Monde(10, 20);
+        Monde monde = new Monde(10, 15);
         Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
         RobotPollueurSauteur pollueurSauteur = new RobotPollueurSauteur(monde, 1, 0);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 30; i++) {
             pollueurSauteur.parcourir();
             monde.printMonde();
 
@@ -49,7 +49,7 @@ public class Main {
         monde.putDirtyPaper(1, 0);
         Robot.DEBUG = true;//affiche les infos sue les déplacements des robots
         RobotNettoyeurLibre robotNettoyeurLibre = new RobotNettoyeurLibre(monde, 0, 0);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             robotNettoyeurLibre.nettoyer();
         }
         monde.printMonde();

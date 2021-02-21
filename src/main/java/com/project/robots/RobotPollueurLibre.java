@@ -1,7 +1,6 @@
 package com.project.robots;
 
 import java.awt.*;
-import java.util.LinkedList;
 
 public class RobotPollueurLibre extends Robot {
 
@@ -20,7 +19,7 @@ public class RobotPollueurLibre extends Robot {
             // pollue d'abord notre position initiale
             monde.putDirtyPaper(posX, posY);
             // on choisi une case au hazard et on se déplace
-            LinkedList<Point> positionsValides = getListeDeplacements(1);
+            Point[] positionsValides = getListeDeplacements(1);
             Point positionFinale = getRandomElement(positionsValides);
             int x = (int) positionFinale.getX();
             int y = (int) positionFinale.getY();

@@ -1,7 +1,6 @@
 package com.project.robots;
 
 import java.awt.*;
-import java.util.LinkedList;
 
 public class RobotNettoyeurLibre extends RobotNettoyeur {
     public RobotNettoyeurLibre(Monde m, int x, int y) throws PositionInvalideException {
@@ -27,7 +26,7 @@ public class RobotNettoyeurLibre extends RobotNettoyeur {
             }
             monde.cleanDirtyPaper(x, y);
             // on choisi une case au hazard et on se déplace
-            LinkedList<Point> positionsValides = getListeDeplacements(1);
+            Point[] positionsValides = getListeDeplacements(1);
             Point positionFinale = getRandomElement(positionsValides);
             x = (int) positionFinale.getX();
             y = (int) positionFinale.getY();
