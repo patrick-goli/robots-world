@@ -79,7 +79,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.project.robots.Main</mainClass>
+              <mainClass>com.project.robots.Test</mainClass>
             </manifest>
           </archive>
         </configuration>

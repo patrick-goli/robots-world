@@ -1,13 +1,13 @@
 package com.project.robots;
 
-public class Main {
+public class Test {
 
     static void test1() throws PositionInvalideException {
         Monde monde = new Monde(5, 10);
         monde.putDirtyPaper(1, 0);
         monde.putDirtyPaper(3, 9);
         System.out.println(monde.countDirtyPapers());
-        monde.printMonde();
+        //monde.printMonde();
     }
 
     static void testPollueurDroit() throws PositionInvalideException {
@@ -17,7 +17,7 @@ public class Main {
         pollueurDroit.parcourir();
         System.out.println(monde.countDirtyPapers());
 
-        monde.printMonde();
+        //monde.printMonde();
     }
 
 
@@ -27,7 +27,7 @@ public class Main {
         RobotPollueurLibre pollueurLibre = new RobotPollueurLibre(monde);
         for (int i = 0; i < 10; i++) {
             pollueurLibre.parcourir();
-            monde.printMonde();
+            //monde.printMonde();
             Thread.sleep(1000);
         }
     }
@@ -38,7 +38,7 @@ public class Main {
         RobotPollueurSauteur pollueurSauteur = new RobotPollueurSauteur(monde, 1, 0);
         for (int i = 0; i < 30; i++) {
             pollueurSauteur.parcourir();
-            monde.printMonde();
+            //monde.printMonde();
 
             Thread.sleep(1000);
         }
@@ -52,7 +52,7 @@ public class Main {
         for (int i = 0; i < 5; i++) {
             robotNettoyeurLibre.nettoyer();
         }
-        monde.printMonde();
+        //monde.printMonde();
     }
 
     public static void main(String[] args) throws Exception {

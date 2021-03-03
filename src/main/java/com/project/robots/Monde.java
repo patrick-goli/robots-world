@@ -1,35 +1,22 @@
 package com.project.robots;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Monde {
     private static final boolean DIRTY = true;
     private static final boolean CLEAN = false;
     private final boolean[][] mat;
     private final int nbL;
     private final int nbC;
-    private final CarteDuMonde carte;
-    private final JFrame grille = new JFrame("Le Monde Des Robots \uD83E\uDD16");
 
     public Monde() {
         nbL = 10;
         nbC = 10;
         mat = new boolean[nbL][nbC];
-        carte = new CarteDuMonde(nbL, nbC);
-        grille.setPreferredSize(new Dimension(80 * nbC, 80 * nbL));
-        grille.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        grille.pack();
     }
 
     public Monde(int lignes, int colonnes) {
         nbL = lignes;
         nbC = colonnes;
         mat = new boolean[nbL][nbC];
-        carte = new CarteDuMonde(nbL, nbC);
-        grille.setPreferredSize(new Dimension(80 * nbC, 80 * nbL));
-        grille.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        grille.pack();
     }
 
     public int getNbL() {
@@ -111,69 +98,15 @@ public class Monde {
         return sum;
     }
 
-    /**
-     * Affiche le monde en utilisant la matrice
-     */
-    public void printMonde() {
-        //grille.setVisible(false);
-        grille.add(carte);
-        grille.repaint();
-        grille.setVisible(true);
-    }
 
-    private class CarteDuMonde extends JPanel {
-
-        final int nbLignes;
-        final int nbColonnes;
-
-        public CarteDuMonde(int lignes, int colonnes) {
-            nbLignes = lignes;
-            nbColonnes = colonnes;
-        }
-
-        /**
-         * Dessine le monde
-         * Les indices (i,j) de ma matrice correspondent aux coordonnées (hauteur, largeur) sur le plan
-         * Le robot en position (1,0) est en haut à gauche sur le graphique (afficher le monde pour voir)
-         *
-         * @param g objet Graphics
-         */
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2d = (Graphics2D) g.create();
-            int sizeX = getWidth() / nbColonnes;// nombre de cases sur la hauteur
-            int sizeY = getHeight() / nbLignes; //nombre de case sur la largeur
-
-            int x = 0;
-            for (int horz = 0; horz < nbColonnes; horz++) {
-                int y = 0;
-                for (int vert = 0; vert < nbLignes; vert++) {
-                    try {
-                        if (containDirtyPaper(y / sizeY, x / sizeX)) {
-                            //couleur noire si papier sale présent
-                            g.setColor(new Color(0, 0, 0));
-                        } else {
-                            g.setColor(new Color(144, 238, 144));
-                        }
-
-                        g.fillRoundRect(x, y, sizeX, sizeY, 20, 20);
-                        g.setColor(new Color(0, 0, 200));
-                        //les bordures en blue
-                        g.drawRoundRect(x, y, sizeX, sizeY, 20, 20);
-                    } catch (PositionInvalideException e) {
-                        e.printStackTrace();
-                        System.exit(1);
-                    } catch (ArithmeticException e) {
-                        //e.printStackTrace();
-                        //ignore cette erreur qui survient lors de la réduction de la taille de la fenetre du "Monde"
-                        //qui vaut alors 0 ( sizeX=0 ou sizeY=0) division par zéro
-                        continue;
-                    }
-                    y += sizeY;
-                }
-                x += sizeX;
+    public void showMatrix() {
+        for (int i = 0; i < nbL; i++) {
+            for (int j = 0; j < nbC; j++) {
+                System.out.print(mat[i][j] + " ");
             }
-            g2d.dispose();
+            System.out.println("\n");
         }
+        System.out.println(" ");
     }
+
 }
