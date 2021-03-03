@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InterfaceGraphique extends JFrame {
-    private final Monde monde = new Monde(5, 7);
+    private final Monde monde = new Monde(6, 7);
 
     public InterfaceGraphique(String title) {
         super(title);
@@ -36,7 +36,6 @@ public class InterfaceGraphique extends JFrame {
             }
         });
 
-
         PN1.add(N1);
         PN1.add(N2);
         PN1.add(N3);
@@ -53,7 +52,6 @@ public class InterfaceGraphique extends JFrame {
         PW.add(W1);
         PW.add(W2);
         PW.add(W3);
-
 
         contentPane.add("West", PW);
 

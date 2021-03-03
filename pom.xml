@@ -79,7 +79,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.project.robots.Test</mainClass>
+              <mainClass>com.project.robots.InterfaceGraphique</mainClass>
             </manifest>
           </archive>
         </configuration>
