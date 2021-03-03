@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class InterfaceGraphique extends JFrame {
     private final JButton nbPapiersSales = new JButton("Nombre de papiers sales: 0");
-    private Monde monde = new Monde(8, 10);
+    private final Monde monde = new Monde(10, 10);
     private final JPanel carte = new CarteDuMonde(monde.getNbL(), monde.getNbC());
 
 
@@ -17,7 +17,7 @@ public class InterfaceGraphique extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 200 * monde.getNbC(), 200 * monde.getNbL());
 
-        JPanel contentPane = new JPanel(new BorderLayout(0, 0));
+        JPanel contentPane = new JPanel(new BorderLayout());
         setContentPane(contentPane);
 
         //centre
@@ -70,7 +70,7 @@ public class InterfaceGraphique extends JFrame {
         contentPane.add("North", PN);
 
         //ouest
-        JButton W1 = new JButton("Pollueur Droit");
+        JButton W1 = new JButton("Pollueur Tout Droit");
         W1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -91,7 +91,7 @@ public class InterfaceGraphique extends JFrame {
         contentPane.add("West", PW);
 
         //est
-        JButton E1 = new JButton("Nettoyeur Libre ");
+        JButton E1 = new JButton("Nettoyeur Libre");
         JButton E2 = new JButton("Nettoyeur Standard");
         JButton E3 = new JButton("Nettoyeur Smart");
         JPanel PE = new JPanel(new GridLayout(3, 1));
@@ -109,15 +109,13 @@ public class InterfaceGraphique extends JFrame {
     }
 
     public void miseAJourMonde() {
-        nbPapiersSales.setText("Nombre de papiers gras: " + monde.countDirtyPapers());
+        nbPapiersSales.setText("Nombre de papiers sales: " + monde.countDirtyPapers());
         carte.updateUI();
     }
 
     public void reinitialiserMonde() {
-        int l = monde.getNbL();
-        int c = monde.getNbC();
-        monde = new Monde(l, c);
-        nbPapiersSales.setText("Nombre de papiers gras: 0");
+        monde.cleanAllDirtyPapers();
+        nbPapiersSales.setText("Nombre de papiers sales: 0");
         carte.updateUI();
     }
 
@@ -157,7 +155,7 @@ public class InterfaceGraphique extends JFrame {
                         }
 
                         g.fillRoundRect(x, y, sizeX, sizeY, 20, 20);
-                        g.setColor(new Color(0, 0, 200));
+                        g.setColor(new Color(0, 0, 150));
                         //les bordures en blue
                         g.drawRoundRect(x, y, sizeX, sizeY, 20, 20);
                     } catch (PositionInvalideException e) {

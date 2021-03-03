@@ -71,6 +71,14 @@ public class Monde {
         mat[i][j] = CLEAN;
     }
 
+    public void cleanAllDirtyPapers() {
+        for (int i = 0; i < nbL; i++) {
+            for (int j = 0; j < nbC; j++) {
+                mat[i][j] = CLEAN;
+            }
+        }
+    }
+
     /**
      * Teste si une position contient un paper sale
      *
