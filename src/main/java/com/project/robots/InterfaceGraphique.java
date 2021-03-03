@@ -1,34 +1,57 @@
 package com.project.robots;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InterfaceGraphique extends JFrame {
-    private final Monde monde = new Monde(6, 7);
+    private final JButton nbPapiersSales = new JButton("Nombre de papiers sales: 0");
+    private Monde monde = new Monde(8, 10);
+    private final JPanel carte = new CarteDuMonde(monde.getNbL(), monde.getNbC());
+
 
     public InterfaceGraphique(String title) {
         super(title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100 * monde.getNbC(), 100 * monde.getNbL(), 1000 * monde.getNbC(), 1000 * monde.getNbL());
-
-        JPanel PC = new CarteDuMonde(monde.getNbC(), monde.getNbL());
-        JPanel PN = new JPanel(new BorderLayout());
-        JPanel PN1 = new JPanel(new GridLayout(1, 5));
-        JPanel PN2 = new JPanel(new BorderLayout());
-        JPanel PS = new JPanel(new GridLayout());
-        JPanel PW = new JPanel(new GridLayout(3, 1));
-        JPanel PE = new JPanel(new GridLayout(3, 1));
+        setBounds(0, 0, 200 * monde.getNbC(), 200 * monde.getNbL());
 
         JPanel contentPane = new JPanel(new BorderLayout(0, 0));
         setContentPane(contentPane);
 
+        //centre
+        contentPane.add("Center", carte);
+
+        //sud
+        JButton PS1 = new JButton();
+        JButton PS2 = new JButton("Case sale");
+        JButton PS3 = new JButton();
+        PS3.setBackground(new Color(173, 216, 230));
+        JButton PS4 = new JButton("Case propre");
+        PS1.setBackground(new Color(0, 0, 0));
+        JPanel PS = new JPanel(new GridLayout(1, 4));
+        PS.add(PS1);
+        PS.add(PS2);
+        PS.add(PS3);
+        PS.add(PS4);
+        contentPane.add("South", PS);
+
+        //nord
+
+        JPanel PN1 = new JPanel(new GridLayout(1, 5));
+        JPanel PN2 = new JPanel(new BorderLayout());
         JButton N1 = new JButton("Réinitialiser le Monde");
+        N1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent RobotNettoyeur) {
+                reinitialiserMonde();
+            }
+        });
+
         JButton N2 = new JButton("Nettoyer");
         JButton N3 = new JButton("Polluer");
         JButton N4 = new JButton("Quitter");
-
+        N4.setBorder(new EmptyBorder(50, 50, 50, 50));
         N4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 e.getSource();
@@ -40,37 +63,62 @@ public class InterfaceGraphique extends JFrame {
         PN1.add(N2);
         PN1.add(N3);
         PN1.add(N4);
+        JPanel PN = new JPanel(new BorderLayout());
         PN.add("North", PN1);
-        PN2.add(new JButton("Nombre de papiers gras: "));
+        PN2.add(nbPapiersSales);
         PN.add("South", PN2);
         contentPane.add("North", PN);
 
+        //ouest
         JButton W1 = new JButton("Pollueur Droit");
+        W1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    RobotPollueurToutDroit robot = new RobotPollueurToutDroit(monde, (int) (monde.getNbC() * Math.random()));
+                    robot.parcourir();
+                } catch (PositionInvalideException positionInvalideException) {
+                    positionInvalideException.printStackTrace();
+                }
+                miseAJourMonde();
+            }
+        });
         JButton W2 = new JButton("Pollueur Sauteur");
         JButton W3 = new JButton("Pollueur Libre");
-
+        JPanel PW = new JPanel(new GridLayout(3, 1));
         PW.add(W1);
         PW.add(W2);
         PW.add(W3);
-
         contentPane.add("West", PW);
 
+        //est
         JButton E1 = new JButton("Nettoyeur Libre ");
         JButton E2 = new JButton("Nettoyeur Standard");
         JButton E3 = new JButton("Nettoyeur Smart");
-
+        JPanel PE = new JPanel(new GridLayout(3, 1));
         PE.add(E1);
         PE.add(E2);
         PE.add(E3);
-
         contentPane.add("East", PE);
-        contentPane.add("Center", PC);
 
     }
 
     public static void main(String[] args) {
+        Robot.DEBUG = true;
         InterfaceGraphique interfaceGraphique = new InterfaceGraphique("Le Monde Des Robots \uD83E\uDD16");
         interfaceGraphique.setVisible(true);
+    }
+
+    public void miseAJourMonde() {
+        nbPapiersSales.setText("Nombre de papiers gras: " + monde.countDirtyPapers());
+        carte.updateUI();
+    }
+
+    public void reinitialiserMonde() {
+        int l = monde.getNbL();
+        int c = monde.getNbC();
+        monde = new Monde(l, c);
+        nbPapiersSales.setText("Nombre de papiers gras: 0");
+        carte.updateUI();
     }
 
     private class CarteDuMonde extends JPanel {
@@ -105,7 +153,7 @@ public class InterfaceGraphique extends JFrame {
                             //couleur noire si papier sale présent
                             g.setColor(new Color(0, 0, 0));
                         } else {
-                            g.setColor(new Color(144, 238, 144));
+                            g.setColor(new Color(173, 216, 230));
                         }
 
                         g.fillRoundRect(x, y, sizeX, sizeY, 20, 20);
