@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InterfaceGraphique extends JFrame {
+
+    private static final long serialVersionUID = 1L;
     private final JButton nbPapiersSales = new JButton("Nombre de papiers sales: 0");
     private final Monde monde = new Monde(10, 10);
     private final JPanel carte = new CarteDuMonde(monde.getNbL(), monde.getNbC());
@@ -121,6 +123,10 @@ public class InterfaceGraphique extends JFrame {
 
     private class CarteDuMonde extends JPanel {
 
+        /**
+         *
+         */
+        private static final long serialVersionUID = 1L;
         final int nbLignes;
         final int nbColonnes;
 

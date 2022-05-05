@@ -58,7 +58,7 @@ public class Test {
     public static void main(String[] args) throws Exception {
 
         test1();
-        //testPollueurDroit();
+        testPollueurDroit();
         //testPollueurLibre();
         //testPollueurSauteur();
         //testettoyeurLibre();

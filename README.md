@@ -1,3 +1,4 @@
 # Le monde des robots
+
 @Author
-Chemela Coulibaly
+Chemela C. & Kouassi GOLI
